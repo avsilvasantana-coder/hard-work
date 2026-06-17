@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hard Work Center Fit – Aguaí SP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0a0a0a;
+      --bg2:     #111111;
+      --card:    #1a1a1a;
+      --border:  #2a2a2a;
+      --fg:      #f0f0f0;
+      --muted:   #888888;
+      --primary: #f97316;
+      --accent:  #eab308;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .container { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 1.5rem; }
+    .grad-text { background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 1rem 2rem; border-radius: .5rem; font-weight: 700; font-size: 1rem; background: linear-gradient(to right, var(--primary), var(--accent)); color: #fff; transition: box-shadow .3s, transform .2s; }
+    .btn-primary:hover { box-shadow: 0 0 32px rgba(249,115,22,.5); transform: translateY(-1px); }
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: .5rem; font-weight: 700; font-size: 1rem; background: var(--card); border: 1px solid var(--border); color: var(--fg); transition: background .2s; }
+    .btn-outline:hover { background: var(--bg2); }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 1.25rem; }
+    .logo { display: flex; align-items: center; gap: .75rem; }
+    .logo-icon { width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; color: var(--bg); }
+    .logo-text p { font-size: .7rem; color: var(--muted); margin-top: -2px; }
+    .logo-text h2 { font-size: 1rem; font-weight: 700; letter-spacing: .05em; }
+    nav { display: flex; gap: 2rem; font-size: .85rem; font-weight: 600; }
+    nav a:hover { color: var(--primary); transition: color .2s; }
+    .header-cta { font-size: .85rem; padding: .75rem 1.5rem; border-radius: .5rem; }
+    .hamburger { display: none; padding: .5rem; border-radius: .5rem; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--fg); margin: 5px 0; }
+    .mobile-nav { display: none; flex-direction: column; gap: 1rem; padding: 1.5rem; background: var(--bg2); border-top: 1px solid var(--border); }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-weight: 600; padding: .25rem 0; }
+    @media(max-width:1023px) { nav, .header-cta { display: none; } .hamburger { display: block; } }
+
+    /* HERO */
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: var(--bg); }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .3; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,115,22,.2) 0%, rgba(10,10,10,.8) 50%, var(--bg) 100%); }
+    .hero-content { position: relative; z-index: 2; padding-block: 8rem; display: grid; gap: 4rem; align-items: center; }
+    @media(min-width:1024px) { .hero-content { grid-template-columns: 1fr 1fr; } }
+    .hero-stars { display: flex; align-items: center; gap: .5rem; margin-bottom: 1.5rem; }
+    .star-row { display: flex; gap: 2px; }
+    .star { color: var(--accent); }
+    .hero-stars span { color: var(--muted); font-size: .85rem; }
+    h1.hero-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; max-width: 540px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
+    .stat-num.accent { color: var(--accent); }
+    .stat-num.white { color: var(--fg); }
+    .stat-label { font-size: .8rem; color: var(--muted); }
+    .hero-img-wrap { position: relative; display: none; }
+    @media(min-width:1024px) { .hero-img-wrap { display: block; } }
+    .hero-img-glow { position: absolute; inset: 0; border-radius: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--accent)); filter: blur(60px); opacity: .3; }
+    .hero-img-wrap img { position: relative; border-radius: 1.5rem; width: 100%; height: 600px; object-fit: cover; box-shadow: 0 40px 80px rgba(0,0,0,.6); }
+
+    /* SEÇÃO GENÉRICA */
+    .section-title { text-align: center; margin-bottom: 5rem; }
+    .section-title h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 1rem; }
+    .section-title p { font-size: 1.1rem; color: var(--muted); }
+
+    /* SOBRE */
+    #sobre { padding-block: 8rem; background: var(--bg2); position: relative; overflow: hidden; }
+    #sobre::before { content: ''; position: absolute; top: 0; right: 0; width: 33%; height: 100%; background: linear-gradient(to left, rgba(249,115,22,.1), transparent); }
+    .about-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 5rem; }
+    .about-card { background: var(--card); padding: 2rem; border-radius: 1rem; border: 1px solid var(--border); transition: border-color .3s; }
+    .about-card:hover { border-color: var(--primary); }
+    .about-icon { width: 64px; height: 64px; border-radius: .75rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .about-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .about-card p { color: var(--muted); font-size: .95rem; }
+    .about-banner { text-align: center; background: linear-gradient(to right, var(--primary), var(--accent)); padding: 3px; border-radius: 1rem; display: block; }
+    .about-banner-inner { background: var(--card); padding: 2.5rem 3rem; border-radius: calc(1rem - 3px); }
+    .about-banner-inner p:first-child { font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
+    .about-banner-inner p:last-child { color: var(--muted); }
+
+    /* MODALIDADES */
+    #modalidades { padding-block: 8rem; background: var(--bg); }
+    .modality { margin-bottom: 3rem; }
+    .modality-grid { display: grid; gap: 2rem; align-items: center; }
+    @media(min-width:1024px) { .modality-grid { grid-template-columns: 1fr 1fr; } }
+    .modality-img-wrap { position: relative; border-radius: 1.5rem; overflow: hidden; }
+    .modality-img-wrap img { width: 100%; height: 500px; object-fit: cover; transition: transform .7s ease; }
+    .modality:hover .modality-img-wrap img { transform: scale(1.08); }
+    .modality-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, rgba(10,10,10,.5) 40%, transparent 100%); }
+    .modality-subtitle { color: var(--primary); font-weight: 700; font-size: .8rem; letter-spacing: .15em; margin-bottom: .5rem; }
+    .modality-title { font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; }
+    .modality-desc { font-size: 1.1rem; color: var(--muted); margin-bottom: 2rem; }
+    .modality-features { display: flex; flex-direction: column; gap: 1rem; }
+    .modality-features li { display: flex; align-items: center; gap: .75rem; font-size: 1rem; }
+    .feat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(to right, var(--primary), var(--accent)); }
+    @media(min-width:1024px) {
+      .modality:nth-child(even) .modality-img-wrap { order: 2; }
+      .modality:nth-child(even) .modality-text  { order: 1; }
+    }
+
+    /* AVALIAÇÕES */
+    #avaliacoes { padding-block: 8rem; background: var(--bg2); position: relative; overflow: hidden; }
+    .reviews-glow-l, .reviews-glow-r { position: absolute; width: 384px; height: 384px; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .reviews-glow-l { top: 0; left: 0; background: rgba(249,115,22,.1); }
+    .reviews-glow-r { bottom: 0; right: 0; background: rgba(234,179,8,.1); }
+    .rating-hero { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-bottom: 1.5rem; }
+    .rating-hero .star { font-size: 2rem; }
+    .rating-hero .score { font-size: 4rem; font-weight: 900; }
+    .reviews-grid { display: grid; gap: 2rem; }
+    @media(min-width:768px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+    .review-card { background: var(--card); padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); position: relative; transition: border-color .3s; }
+    .review-card:hover { border-color: var(--primary); }
+    .quote-icon { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 3rem; color: rgba(249,115,22,.15); line-height: 1; }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 1.25rem; }
+    .review-text { font-size: 1.05rem; margin-bottom: 1.25rem; }
+    .review-name { font-weight: 700; font-size: 1rem; }
+
+    /* PLANOS */
+    #planos { padding-block: 8rem; background: var(--bg); }
+    .plans-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: center; }
+    .plan-card { background: var(--card); border: 2px solid var(--border); border-radius: 1.5rem; padding: 2rem; transition: border-color .3s; }
+    .plan-card:hover { border-color: var(--primary); }
+    .plan-card.popular { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: transparent; transform: scale(1.05); box-shadow: 0 0 60px rgba(249,115,22,.4); }
+    .plan-badge { display: flex; align-items: center; gap: .5rem; margin-bottom: 1.5rem; font-size: .8rem; font-weight: 700; }
+    .plan-card.popular .plan-badge { color: #fff; }
+    .plan-name { font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; }
+    .plan-card.popular .plan-name, .plan-card.popular .plan-from, .plan-card.popular .plan-price, .plan-card.popular .plan-feature { color: #fff; }
+    .plan-from { font-size: 1rem; color: var(--muted); margin-bottom: .25rem; }
+    .plan-price { font-size: 2.2rem; font-weight: 900; margin-bottom: 2rem; }
+    .plan-features { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .plan-feature { display: flex; align-items: center; gap: .75rem; font-size: .95rem; }
+    .check-icon { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(249,115,22,.15); }
+    .plan-card.popular .check-icon { background: rgba(255,255,255,.2); }
+    .check-icon::before { content: '✓'; font-size: .75rem; color: var(--primary); }
+    .plan-card.popular .check-icon::before { color: #fff; }
+    .plan-btn { width: 100%; padding: 1rem; border-radius: .75rem; font-weight: 700; font-size: 1rem; background: linear-gradient(to right, var(--primary), var(--accent)); color: #fff; cursor: pointer; transition: box-shadow .3s; display: block; text-align: center; }
+    .plan-btn:hover { box-shadow: 0 0 24px rgba(249,115,22,.5); }
+    .plan-card.popular .plan-btn { background: #fff; color: var(--primary); }
+    .plan-card.popular .plan-btn:hover { background: var(--accent); color: #fff; }
+
+    /* CONTATO */
+    #contato { padding-block: 8rem; background: var(--bg2); position: relative; overflow: hidden; }
+    .contact-glow-l { position: absolute; top: 25%; left: 25%; width: 384px; height: 384px; border-radius: 50%; background: rgba(249,115,22,.1); filter: blur(80px); }
+    .contact-glow-r { position: absolute; bottom: 25%; right: 25%; width: 384px; height: 384px; border-radius: 50%; background: rgba(234,179,8,.1); filter: blur(80px); }
+    .contact-grid { display: grid; gap: 3rem; position: relative; z-index: 2; }
+    @media(min-width:1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-card { background: var(--card); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid var(--border); }
+    .contact-card h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-icon { width: 56px; height: 56px; border-radius: .75rem; flex-shrink: 0; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .contact-item h4 { font-weight: 700; margin-bottom: .25rem; }
+    .contact-item p, .contact-item address { font-style: normal; color: var(--muted); line-height: 1.7; }
+    .contact-item a.map-link { display: inline-block; margin-top: .5rem; color: var(--primary); font-weight: 700; font-size: .9rem; }
+    .contact-item a.map-link:hover { color: var(--accent); }
+    .contact-item a.phone-link { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+    .contact-item a.phone-link:hover { color: var(--accent); }
+    .contact-cta { display: block; width: 100%; margin-top: 2rem; padding: 1rem; text-align: center; font-weight: 700; font-size: 1rem; border-radius: .75rem; background: linear-gradient(to right, var(--primary), var(--accent)); color: #fff; transition: box-shadow .3s; }
+    .contact-cta:hover { box-shadow: 0 0 24px rgba(249,115,22,.5); }
+    .map-wrap { border-radius: 1.5rem; overflow: hidden; border: 2px solid var(--border); min-height: 500px; }
+    .map-wrap iframe { width: 100%; height: 100%; min-height: 500px; border: 0; }
+
+    /* FOOTER */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding-block: 4rem; }
+    .footer-grid { display: grid; gap: 3rem; margin-bottom: 3rem; }
+    @media(min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+    .footer-brand p { color: var(--muted); max-width: 380px; margin-block: 1.5rem; line-height: 1.7; }
+    .footer-social { display: flex; gap: 1rem; }
+    .social-btn { width: 48px; height: 48px; border-radius: .75rem; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: background .3s; }
+    .social-btn:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+    .footer-col h4 { font-weight: 700; margin-bottom: 1rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col ul a { color: var(--muted); font-size: .9rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--primary); }
+    .footer-col address { font-style: normal; color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .footer-phone { display: block; margin-top: .5rem; color: var(--primary); font-weight: 700; }
+    .footer-phone:hover { color: var(--accent); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    .footer-bottom p { color: var(--muted); font-size: .85rem; }
+
+    /* WhatsApp FAB */
+    .whatsapp-fab { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.5); font-size: 1.8rem; transition: transform .2s; }
+    .whatsapp-fab:hover { transform: scale(1.1); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      <div class="logo-icon">HW</div>
+      <div class="logo-text"><h2>HARD WORK</h2><p>CENTER FIT</p></div>
+    </div>
+    <nav>
+      <a href="#sobre">SOBRE</a>
+      <a href="#modalidades">MODALIDADES</a>
+      <a href="#planos">PLANOS</a>
+      <a href="#contato">CONTATO</a>
+    </nav>
+    <a href="#contato" class="btn-primary header-cta">AGENDAR VISITA</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#sobre" onclick="closeMobile()">SOBRE</a>
+    <a href="#modalidades" onclick="closeMobile()">MODALIDADES</a>
+    <a href="#planos" onclick="closeMobile()">PLANOS</a>
+    <a href="#contato" onclick="closeMobile()">CONTATO</a>
+    <a href="#contato" class="btn-primary" onclick="closeMobile()">AGENDAR VISITA</a>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920" alt="Academia Hard Work Center Fit" />
+  </div>
+  <div class="container hero-content">
+    <div>
+      <div class="hero-stars">
+        <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <span>4.7 • 104 avaliações</span>
+      </div>
+      <h1 class="hero-title"><span class="grad-text">HARD WORK</span><br>CENTER FIT</h1>
+      <p class="hero-sub">Transforme seu corpo, supere seus limites e conquiste seus objetivos com a melhor estrutura e profissionais de Aguaí.</p>
+      <div class="hero-btns">
+        <a href="#contato" class="btn-primary">COMECE AGORA →</a>
+        <a href="#planos" class="btn-outline">VER PLANOS</a>
+      </div>
+      <div class="hero-stats">
+        <div><p class="stat-num">104+</p><p class="stat-label">Alunos Ativos</p></div>
+        <div><p class="stat-num accent">3</p><p class="stat-label">Modalidades</p></div>
+        <div><p class="stat-num white">14h</p><p class="stat-label">Aberto/Dia</p></div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-img-glow"></div>
+      <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Treino na academia" />
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>POR QUE A <span class="grad-text">HARD WORK?</span></h2>
+      <p>Somos referência em treinamento de alta performance em Aguaí, com ambiente amplo, equipamentos modernos e os melhores profissionais da região.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card fade-in"><div class="about-icon">🏋️</div><h3>Aparelhos Modernos</h3><p>Equipamentos de última geração para seu treino</p></div>
+      <div class="about-card fade-in"><div class="about-icon">👥</div><h3>Instrutores Expert</h3><p>Rafael e Erika, profissionais altamente qualificados</p></div>
+      <div class="about-card fade-in"><div class="about-icon">⭐</div><h3>4.7 Estrelas</h3><p>Mais de 104 avaliações positivas</p></div>
+      <div class="about-card fade-in"><div class="about-icon">⚡</div><h3>Resultados Reais</h3><p>Ambiente motivador para você alcançar suas metas</p></div>
+    </div>
+    <div class="about-banner fade-in">
+      <div class="about-banner-inner">
+        <p>Ambiente super completo e amplo</p>
+        <p>Com aulas de Cross Training, Muay Thai e Musculação</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modalidades">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>NOSSAS <span class="grad-text">MODALIDADES</span></h2>
+      <p>Escolha o treino ideal para seus objetivos</p>
+    </div>
+    <div class="modality fade-in">
+      <div class="modality-grid">
+        <div class="modality-img-wrap"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" alt="Musculação" /></div>
+        <div class="modality-text">
+          <p class="modality-subtitle">GANHE FORÇA E MASSA</p>
+          <h3 class="modality-title">MUSCULAÇÃO</h3>
+          <p class="modality-desc">Treinamento personalizado com acompanhamento dos nossos instrutores Rafael e Erika. Aparelhos modernos e ambiente motivador.</p>
+          <ul class="modality-features"><li><span class="feat-dot"></span>Treino personalizado</li><li><span class="feat-dot"></span>Acompanhamento profissional</li><li><span class="feat-dot"></span>Aparelhos modernos</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="modality fade-in">
+      <div class="modality-grid">
+        <div class="modality-img-wrap"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" alt="Cross Training" /></div>
+        <div class="modality-text">
+          <p class="modality-subtitle">ALTA INTENSIDADE</p>
+          <h3 class="modality-title">CROSS TRAINING</h3>
+          <p class="modality-desc">Treinos funcionais que combinam força, cardio e flexibilidade. Melhore seu condicionamento físico e queime calorias.</p>
+          <ul class="modality-features"><li><span class="feat-dot"></span>Aulas em grupo</li><li><span class="feat-dot"></span>Alta intensidade</li><li><span class="feat-dot"></span>Queima calórica</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="modality fade-in">
+      <div class="modality-grid">
+        <div class="modality-img-wrap"><img src="https://images.unsplash.com/photo-1555597408-26bc8e548a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" alt="Muay Thai" /></div>
+        <div class="modality-text">
+          <p class="modality-subtitle">ARTE MARCIAL TAILANDESA</p>
+          <h3 class="modality-title">MUAY THAI</h3>
+          <p class="modality-desc">Desenvolva técnica, disciplina e condicionamento físico. Ideal para defesa pessoal e emagrecimento.</p>
+          <ul class="modality-features"><li><span class="feat-dot"></span>Defesa pessoal</li><li><span class="feat-dot"></span>Condicionamento</li><li><span class="feat-dot"></span>Disciplina</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes">
+  <div class="reviews-glow-l"></div>
+  <div class="reviews-glow-r"></div>
+  <div class="container">
+    <div class="section-title fade-in">
+      <div class="rating-hero"><span class="star">★</span><span class="score">4.7</span><span class="star">★</span></div>
+      <h2>O QUE NOSSOS <span class="grad-text">ALUNOS DIZEM</span></h2>
+      <p>Mais de 104 avaliações positivas</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-in"><div class="quote-icon">"</div><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="review-text">"Academia grande, bons professores. Máquinas ok, ambiente com boa estrutura."</p><p class="review-name">Gustavo Molina</p></div>
+      <div class="review-card fade-in"><div class="quote-icon">"</div><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="review-text">"Um ambiente leve, com treinadores incríveis e muita diversão!"</p><p class="review-name">Marília Pereira</p></div>
+      <div class="review-card fade-in"><div class="quote-icon">"</div><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="review-text">"Recomendo de olhos fechados! Profissionais altamente qualificados e dedicados."</p><p class="review-name">Jacqueline Calixto</p></div>
+      <div class="review-card fade-in"><div class="quote-icon">"</div><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="review-text">"Academia top! Aparelhos novos, muito espaço, nota 1000."</p><p class="review-name">Cliente Satisfeito</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>ESCOLHA SEU <span class="grad-text">PLANO</span></h2>
+      <p>Invista no seu corpo e na sua saúde</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card fade-in">
+        <h3 class="plan-name">MENSAL</h3><p class="plan-from">A partir de</p><p class="plan-price">CONSULTAR</p>
+        <ul class="plan-features"><li class="plan-feature"><span class="check-icon"></span>Acesso ilimitado</li><li class="plan-feature"><span class="check-icon"></span>Todas as modalidades</li><li class="plan-feature"><span class="check-icon"></span>Acompanhamento profissional</li><li class="plan-feature"><span class="check-icon"></span>Sem taxa de matrícula</li></ul>
+        <a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="plan-btn">CONSULTAR VALORES</a>
+      </div>
+      <div class="plan-card popular fade-in">
+        <div class="plan-badge">⚡ MAIS POPULAR</div>
+        <h3 class="plan-name">TRIMESTRAL</h3><p class="plan-from">A partir de</p><p class="plan-price">CONSULTAR</p>
+        <ul class="plan-features"><li class="plan-feature"><span class="check-icon"></span>Acesso ilimitado</li><li class="plan-feature"><span class="check-icon"></span>Todas as modalidades</li><li class="plan-feature"><span class="check-icon"></span>Acompanhamento profissional</li><li class="plan-feature"><span class="check-icon"></span>Desconto especial</li><li class="plan-feature"><span class="check-icon"></span>Avaliação física gratuita</li><li class="plan-feature"><span class="check-icon"></span>Treino personalizado</li></ul>
+        <a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="plan-btn">CONSULTAR VALORES</a>
+      </div>
+      <div class="plan-card fade-in">
+        <div class="plan-badge">⚡ <span style="color:var(--accent)">MELHOR CUSTO</span></div>
+        <h3 class="plan-name">ANUAL</h3><p class="plan-from">A partir de</p><p class="plan-price">CONSULTAR</p>
+        <ul class="plan-features"><li class="plan-feature"><span class="check-icon"></span>Acesso ilimitado</li><li class="plan-feature"><span class="check-icon"></span>Todas as modalidades</li><li class="plan-feature"><span class="check-icon"></span>Acompanhamento profissional</li><li class="plan-feature"><span class="check-icon"></span>Maior economia</li><li class="plan-feature"><span class="check-icon"></span>Avaliação física mensal</li><li class="plan-feature"><span class="check-icon"></span>Treino personalizado</li><li class="plan-feature"><span class="check-icon"></span>Prioridade nas aulas</li></ul>
+        <a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="plan-btn">CONSULTAR VALORES</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="contact-glow-l"></div>
+  <div class="contact-glow-r"></div>
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>VAMOS <span class="grad-text">TREINAR?</span></h2>
+      <p>Agende sua visita e conheça nossa estrutura</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card fade-in">
+        <h3>Entre em Contato</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div><h4>Endereço</h4><address>R. Cap. Silva Borges, 302<br>Centro, Aguaí - SP<br>CEP: 13860-017</address><a href="https://www.google.com/maps/search/?api=1&query=R.+Cap.+Silva+Borges+302+Aguai+SP" target="_blank" class="map-link">Ver no mapa →</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div><h4>Horário de Funcionamento</h4><p>Segunda a Sexta: 6h às 22h<br>Sábado: 8h às 18h<br>Domingo: Fechado</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div><h4>Telefone / WhatsApp</h4><a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="phone-link">(19) 99132-9442</a></div>
+          </div>
+        </div>
+        <a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="contact-cta">AGENDAR VISITA GRATUITA</a>
+      </div>
+      <div class="map-wrap fade-in">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3696.5!2d-46.9847!3d-22.0622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zUi4gQ2FwLiBTaWx2YSBCb3JnZXMsIDMwMiAtIENlbnRybywgQWd1YcOtIC0gU1AsIDEzODYwLTAxNw!5e0!3m2!1spt-BR!2sbr!4v1234567890" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Hard Work Center Fit"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-icon">HW</div><div class="logo-text"><h2>HARD WORK</h2><p>CENTER FIT</p></div></div>
+        <p>Transforme seu corpo, supere seus limites e conquiste seus objetivos com a melhor academia de Aguaí.</p>
+        <div class="footer-social"><a href="#" class="social-btn" aria-label="Instagram">📷</a><a href="#" class="social-btn" aria-label="Facebook">📘</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <ul><li><a href="#sobre">Sobre</a></li><li><a href="#modalidades">Modalidades</a></li><li><a href="#planos">Planos</a></li><li><a href="#contato">Contato</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <address>📍 R. Cap. Silva Borges, 302<br>Centro, Aguaí - SP<br><br>Segunda a Sexta: 6h às 22h<br>Sábado: 8h às 18h</address>
+        <a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="footer-phone">(19) 99132-9442</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hard Work Center Fit. Todos os direitos reservados.</p>
+      <p>⭐ 4.7 • 104+ avaliações</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5519991329442?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20treinar.%20Pode%20me%20ajudar%20com%20informa%C3%A7%C3%B5es%20sobre%20planos%2C%20hor%C3%A1rios%20e%20como%20fazer%20minha%20matr%C3%ADcula%3F" target="_blank" class="whatsapp-fab" aria-label="WhatsApp">💬</a>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  function closeMobile() { mobileNav.classList.remove('open'); }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
